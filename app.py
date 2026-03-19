@@ -8,7 +8,7 @@ from io import BytesIO
 # =================================================================
 # 1. CONFIGURACIÓN Y BLINDAJE VISUAL GLOBAL
 # =================================================================
-st.set_page_config(page_title="TMO UTA: Óptica y Refracción", layout="wide")
+st.set_page_config(page_title="TMO UTA: Óptica y Refracción Aplicada", layout="wide")
 
 # Inyección de CSS para forzar legibilidad clínica (Independiente del Tema del Sistema)
 st.markdown("""
@@ -167,7 +167,7 @@ def generar_ojo_3d(res):
 # =================================================================
 # 5. UI Y EVALUACIÓN SBE
 # =================================================================
-st.subheader("Parámetros Clínicos (Refracción del Ojo Desnudo)")
+st.subheader("Ingrese aquí la fórmula esferocilíndrica")
 c1, c2, c3 = st.columns(3)
 esf = c1.number_input("Esfera (D)", value=0.00, step=0.25)
 cil = c2.number_input("Cilindro (D)", value=0.00, step=0.25)
@@ -178,12 +178,12 @@ st.plotly_chart(generar_ojo_3d(res), use_container_width=True)
 
 # Panel de Métricas SBE
 st.markdown("---")
-st.subheader("Análisis de Semiología Basada en la Evidencia (SBE)")
+st.subheader("Análisis de Transposición y Bicilindro")
 f, b = res["formulas"], res["formulas"]["bic"]
 m1, m2, m3 = st.columns(3)
 m1.metric("Cilindro Negativo", f"{format_diopter(f['neg'][0])} / {format_diopter(f['neg'][1])} x {f['neg'][2]}°")
 m2.metric("Cilindro Positivo", f"{format_diopter(f['pos'][0])} / {format_diopter(f['pos'][1])} x {f['pos'][2]}°")
-m3.metric("Bicilindro (Cruz)", f"{format_diopter(b['c1'])}x{b['e1']}° | {format_diopter(b['c2'])}x{b['e2']}°")
+m3.metric("Bicilindro", f"{format_diopter(b['c1'])}x{b['e1']}° | {format_diopter(b['c2'])}x{b['e2']}°")
 
 # Evaluación
 st.markdown("---")
